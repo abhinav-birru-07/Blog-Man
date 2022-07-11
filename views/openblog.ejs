@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("./partials/header.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+
+  <div class="openblog">
+    <div class="opentitle"><%= blog.title %></div>
+    <div class="opensnippet"> Written by <%= blog.snippet %></div>
+    <div class="openbody"><%= blog.body %></div>
+    <!-- <a class="delete" data-doc="<%= blog._id %>">delete</a> -->
+    <a href="/all-blogs/del/<%= blog._id %>" class="todelblog" data-doc="<%= blog._id %>" ><i class='fa fa-trash' style="color: rgb(159, 11, 11);"></i></a>
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
+  <script>
+    const trashcan = document.querySelector('a.todelblog');
+    trashcan.addEventListener('click', (e) => {
+      const endpoint = `/all-blogs/${trashcan.dataset.doc}`;
+      fetch(endpoint, {
+        method: 'DELETE',
+      })
+      .then(response => response.json())
+      .then(data => window.location.href = data.redirect)
+      .catch(err => console.log(err));
+    });
+    
+  </script>
+</body>
+</html>

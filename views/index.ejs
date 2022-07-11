@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("./partials/header.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+  <div id="welcometag">
+    <% if(user) { %>
+    <p>Welcome, <%= user.email %></p>
+    <% } %>
+  </div>
+  <div class="blogs content" id="mainpage-blogs">
+    <h2>Featured Ones </h2>
+
+    <% if (blogs.length > 0) { %>
+      <% blogs.forEach(blog => { %>
+        <a href="/all-blogs/<%= blog._id %>" class="toopenblog">
+          <h3 class="title"><%= blog.title %></h3>
+          <p class="snippet">Written by <%= blog.snippet %></p>
+        </a>
+      <% }) %>
+    <% } else { %>
+      <p>Sorry, there are no blogs available</p>
+    <% } %>
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
+</body>
+</html>
