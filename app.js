@@ -35,10 +35,10 @@ app.get('/', (req, res) => {
   // console.log('hello');
 
   const blogs = [
-      { title: "Blog - 1", snippet: "Lorem ipsum", _id: "62cbfd3c09de80d102fd91aa"},
-      { title: "Blog - 1", snippet: "Lorem ipsum", _id: "62cbfda809de80d102fd91ab"},
-      { title: "Blog - 1", snippet: "Lorem ipsum", _id: "62cbfdb409de80d102fd91ac"},
-      { title: "Blog - 1", snippet: "Lorem ipsum", _id: "62cbfdbc09de80d102fd91ad"},
+      { title: "The Alchemist", snippet: "Paulo Coelho", _id: "62cbfd3c09de80d102fd91aa"},
+      { title: "The Alchemist", snippet: "Paulo Coelho", _id: "62cbfda809de80d102fd91ab"},
+      { title: "The Alchemist", snippet: "Paulo Coelho", _id: "62cbfdb409de80d102fd91ac"},
+      { title: "The Alchemist", snippet: "Paulo Coelho", _id: "62cbfdbc09de80d102fd91ad"},
   ]
   res.render('index', {blogs});
 });
