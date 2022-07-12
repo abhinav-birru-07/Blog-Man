@@ -18,7 +18,7 @@ app.use(cookieParser());
 // database connection
 const dbURI = 'mongodb+srv://User2:Password2@clusterabhi.5r53vae.mongodb.net/?retryWrites=true&w=majority';
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
-  .then((result) => app.listen(3000))
+  .then((result) => app.listen( process.env.PORT || 3000))
   .catch((err) => console.log(err));
 
 

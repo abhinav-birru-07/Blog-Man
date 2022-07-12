@@ -136,7 +136,7 @@ module.exports.all_blogs_del_id_get = (req, res) => {
 }
 
 module.exports.all_blogs_post = (req, res) => {
-  console.log("indide posting");
+  // console.log("indide posting");
   // console.log(res.locals.user);
   // console.log(req.body, "aaaa");
   const blog = new Blog(req.body);
