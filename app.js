@@ -6,6 +6,7 @@ const { requireAuth, checkUser } = require('./middleware/authMiddleware');
 const jwt = require('jsonwebtoken');
 
 const Blog = require('./models/Blog');
+const User = require('./models/User');
 const app = express();
 
 // middleware
@@ -29,18 +30,30 @@ app.use(express.urlencoded({extended: true}));
 // routes
 app.get('*', checkUser); 
 // app.get('/', (req, res) => res.render('index'));
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
   // var authheader=req.headers.authorization;
   // console.log(authheader);
   // console.log('hello');
 
-  const blogs = [
-      { title: "The Alchemist", snippet: "Paulo Coelho", _id: "62cbfd3c09de80d102fd91aa"},
-      { title: "The Alchemist", snippet: "Paulo Coelho", _id: "62cbfda809de80d102fd91ab"},
-      { title: "The Alchemist", snippet: "Paulo Coelho", _id: "62cbfdb409de80d102fd91ac"},
-      { title: "The Alchemist", snippet: "Paulo Coelho", _id: "62cbfdbc09de80d102fd91ad"},
-  ]
-  res.render('index', {blogs});
+  const user = await User.findOne({ email: 'admin_abhinav@gmail.com' });
+  if(user) {
+    Blog.find({blogid: user._id})
+    .then((result) => {
+      res.render('index', {blogs: result})
+    })
+    .catch((err) => console.log(err));
+  } else {
+    res.render('noadmin');
+  }
+
+
+  // const blogs = [
+  //     { title: "The Alchemist", snippet: "Paulo Coelho", _id: "62cbfd3c09de80d102fd91aa"},
+  //     { title: "The Alchemist", snippet: "Paulo Coelho", _id: "62cbfda809de80d102fd91ab"},
+  //     { title: "The Alchemist", snippet: "Paulo Coelho", _id: "62cbfdb409de80d102fd91ac"},
+  //     { title: "The Alchemist", snippet: "Paulo Coelho", _id: "62cbfdbc09de80d102fd91ad"},
+  // ]
+  // res.render('index', {blogs});
 });
 
 // app.post('/all-blogs', (req, res) => {

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("./partials/header.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+  <div id="welcometag">
+    <% if(user) { %>
+    <p>Welcome, <%= user.email %></p>
+    <% } %>
+  </div>
+  <div>
+    Admin has not registered yet, Come again soon!!!
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
+</body>
+</html>

@@ -39,7 +39,7 @@ const handleErrors = (err) => {
 // create json web token
 const maxAge = 3 * 24 * 60 * 60;
 const createToken = (id) => {
-  return jwt.sign({ id }, 'net ninja secret', {
+  return jwt.sign({ id }, 'abhinav secret is QWERTYUASDFGqwerty123456!@#$%^&', {
     expiresIn: maxAge
   });
 };
@@ -142,7 +142,7 @@ module.exports.all_blogs_post = (req, res) => {
   const blog = new Blog(req.body);
   blog.blogid = req.params.userid;
   blog.save()
-      .then((result) => res.redirect('/all-blogs'))
+      .then((result) => res.redirect('/my-blogs'))
       .catch((err) => console.log(err));
 }
 
